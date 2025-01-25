@@ -8,17 +8,11 @@ import { Status } from '../enum/status.enum';
 @Injectable({ providedIn: 'root' })
 export class ServerService {
 
-  private readonly apiUrl = 'http://localhost:8081';
+  private readonly apiUrl = 'http://192.168.58.2:30001';
 
   constructor(private http: HttpClient) { }
 
-  // Define a method to retrieve all of the servers from the backend
-  // We can do that with both procedural and reactive approach.
-  // Procedural approach:
-  // getServers(): Observable<CustomResponse> {
-  //   return this.http.get<CustomResponse>('http://localhost:8080/server/list');
-  // }
-  // Reactive approach:
+  
   servers$ = <Observable<CustomResponse>> //  servers$ returns an Observable of type CustomResponse
   this.http.get<CustomResponse>(`${this.apiUrl}/server/list`)
   .pipe(
